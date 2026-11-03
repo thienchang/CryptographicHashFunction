@@ -1,0 +1,77 @@
+C:\VScode\CryptographicHashFunction\benchmark.py:347: DeprecationWarning: Accessing argon2.__version__ is deprecated and will be removed in a future release. Use importlib.metadata directly to query for argon2-cffi's packaging metadata.
+  "argon2_cffi": getattr(argon2_lib, "__version__", "n/a"),
+==============================================================================
+MEASUREMENT ENVIRONMENT
+==============================================================================
+  cpu           : Intel64 Family 6 Model 151 Stepping 2, GenuineIntel
+  logical_cpus  : 12
+  platform      : Windows 11
+  python        : 3.14.6
+  openssl       : OpenSSL 3.5.7 9 Jun 2026
+  bcrypt        : 5.0.0
+  argon2_cffi   : 25.1.0
+
+==============================================================================
+1. AVALANCHE EFFECT  (10,000 single-bit flips, 32-byte messages)
+==============================================================================
+  FNV-1a (non-cryptographic control)     32 bit | mean   14.53 (45.40%) | sd  3.02 | min   5 max  26
+  SHA-256                               256 bit | mean  127.85 (49.94%) | sd  7.96 | min  96 max 159
+  SHA3-256                              256 bit | mean  128.12 (50.05%) | sd  7.96 | min  95 max 156
+  BLAKE2b-256                           256 bit | mean  127.96 (49.99%) | sd  7.93 | min  97 max 158
+
+  Theory for an ideal n-bit hash: mean n/2, sd sqrt(n)/2 (= 128.00 and 8.00 for n = 256)
+
+==============================================================================
+2. BIRTHDAY ATTACK  (truncated SHA-256)
+==============================================================================
+  16 bit |  200 runs | measured          325 | theory          321 | brute force          65,536 | measured/theory 1.014
+  24 bit |  200 runs | measured        4,955 | theory        5,134 | brute force      16,777,216 | measured/theory 0.965
+  32 bit |   30 runs | measured       88,973 | theory       82,137 | brute force   4,294,967,296 | measured/theory 1.083
+
+==============================================================================
+3. DATA HASHING THROUGHPUT  (64 MiB buffer, single core)
+==============================================================================
+  MD5             891 MiB/s   (   71.9 ms per 64 MiB)  (broken)
+  SHA-1         2,159 MiB/s   (   29.6 ms per 64 MiB)  (broken)
+  SHA-256       1,955 MiB/s   (   32.7 ms per 64 MiB)
+  SHA-512         858 MiB/s   (   74.6 ms per 64 MiB)
+  SHA3-256        544 MiB/s   (  117.6 ms per 64 MiB)
+  BLAKE2b         844 MiB/s   (   75.8 ms per 64 MiB)
+  BLAKE2s         602 MiB/s   (  106.2 ms per 64 MiB)
+
+==============================================================================
+4. PASSWORD HASHING COST  (median of 5 runs)
+==============================================================================
+  bcrypt (Blowfish, 4 KiB memory)
+    cost 10  ->      50.9 ms
+    cost 12  ->     204.0 ms
+    cost 14  ->     822.3 ms
+  scrypt (r = 8, p = 1)
+    N = 2^14 ( 16 MiB)  ->     153.0 ms
+    N = 2^17 (128 MiB)  ->    1191.9 ms
+  Argon2id
+    19 MiB, t=2, p=1  (OWASP minimum)    ->      22.8 ms
+    64 MiB, t=3, p=4  (RFC 9106 #2)      ->      60.9 ms
+    256 MiB, t=3, p=4                    ->     260.2 ms
+  Argon2 variants (64 MiB, t=3, p=4)
+    argon2id   ->      63.0 ms
+    argon2i    ->      64.9 ms
+    argon2d    ->      63.3 ms
+
+==============================================================================
+5. SINGLE-CALL LATENCY  (short input, 200,000 calls)
+==============================================================================
+  BLAKE2b-512    0.410 us per call
+  BLAKE2b-256    0.463 us per call
+  BLAKE2s-256    0.358 us per call
+  SHA-256        0.635 us per call
+  SHA3-256       0.867 us per call
+
+==============================================================================
+FIGURES
+==============================================================================
+  -> saved C:\VScode\CryptographicHashFunction\figure1_avalanche.png
+  -> saved C:\VScode\CryptographicHashFunction\figure2_throughput.png
+
+Total run time: 22.4 s
+Results written to benchmark_results.json

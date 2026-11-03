@@ -1,0 +1,139 @@
+{
+  "environment": {
+    "cpu": "Intel64 Family 6 Model 151 Stepping 2, GenuineIntel",
+    "logical_cpus": 12,
+    "platform": "Windows 11",
+    "python": "3.14.6",
+    "openssl": "OpenSSL 3.5.7 9 Jun 2026",
+    "bcrypt": "5.0.0",
+    "argon2_cffi": "25.1.0"
+  },
+  "avalanche": {
+    "FNV-1a (non-cryptographic control)": {
+      "output_bits": 32,
+      "mean_bits_changed": 14.53,
+      "ratio_percent": 45.4,
+      "stdev": 3.02,
+      "min": 5,
+      "max": 26
+    },
+    "SHA-256": {
+      "output_bits": 256,
+      "mean_bits_changed": 127.85,
+      "ratio_percent": 49.94,
+      "stdev": 7.96,
+      "min": 96,
+      "max": 159
+    },
+    "SHA3-256": {
+      "output_bits": 256,
+      "mean_bits_changed": 128.12,
+      "ratio_percent": 50.05,
+      "stdev": 7.96,
+      "min": 95,
+      "max": 156
+    },
+    "BLAKE2b-256": {
+      "output_bits": 256,
+      "mean_bits_changed": 127.96,
+      "ratio_percent": 49.99,
+      "stdev": 7.93,
+      "min": 97,
+      "max": 158
+    }
+  },
+  "birthday": {
+    "16": {
+      "repetitions": 200,
+      "measured_mean": 325,
+      "theory": 321,
+      "brute_force": 65536,
+      "ratio": 1.014
+    },
+    "24": {
+      "repetitions": 200,
+      "measured_mean": 4955,
+      "theory": 5134,
+      "brute_force": 16777216,
+      "ratio": 0.965
+    },
+    "32": {
+      "repetitions": 30,
+      "measured_mean": 88973,
+      "theory": 82137,
+      "brute_force": 4294967296,
+      "ratio": 1.083
+    }
+  },
+  "throughput": {
+    "MD5": {
+      "mib_per_sec": 891,
+      "seconds": 0.0719,
+      "broken": true
+    },
+    "SHA-1": {
+      "mib_per_sec": 2159,
+      "seconds": 0.0296,
+      "broken": true
+    },
+    "SHA-256": {
+      "mib_per_sec": 1955,
+      "seconds": 0.0327,
+      "broken": false
+    },
+    "SHA-512": {
+      "mib_per_sec": 858,
+      "seconds": 0.0746,
+      "broken": false
+    },
+    "SHA3-256": {
+      "mib_per_sec": 544,
+      "seconds": 0.1176,
+      "broken": false
+    },
+    "BLAKE2b": {
+      "mib_per_sec": 844,
+      "seconds": 0.0758,
+      "broken": false
+    },
+    "BLAKE2s": {
+      "mib_per_sec": 602,
+      "seconds": 0.1062,
+      "broken": false
+    }
+  },
+  "password_timing": {
+    "bcrypt": {
+      "10": 51,
+      "12": 204,
+      "14": 822
+    },
+    "scrypt": {
+      "2^14": {
+        "ms": 153,
+        "mib": 16
+      },
+      "2^17": {
+        "ms": 1192,
+        "mib": 128
+      }
+    },
+    "argon2": {
+      "19 MiB, t=2, p=1  (OWASP minimum)": 23,
+      "64 MiB, t=3, p=4  (RFC 9106 #2)": 61,
+      "256 MiB, t=3, p=4": 260
+    },
+    "argon2_variants": {
+      "argon2id": 63,
+      "argon2i": 65,
+      "argon2d": 63
+    }
+  },
+  "fast_latency_us": {
+    "BLAKE2b-512": 0.41,
+    "BLAKE2b-256": 0.463,
+    "BLAKE2s-256": 0.358,
+    "SHA-256": 0.635,
+    "SHA3-256": 0.867
+  }
+}
